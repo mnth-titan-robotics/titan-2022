@@ -6,6 +6,7 @@ public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
 
+<<<<<<< HEAD
    
    
    
@@ -35,4 +36,13 @@ MOTOR_CHANNEL_FRD.set(right)
 
     }
 
+=======
+    public OperatorInterface(){
+        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
+        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
+
+    
+    }
+}
+>>>>>>> e500ba330fc68f58dadc3e8aeb29421fd8adfa85
 
