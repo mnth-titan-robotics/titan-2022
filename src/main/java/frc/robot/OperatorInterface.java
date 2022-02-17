@@ -14,10 +14,11 @@ public class OperatorInterface {
        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
     
-
+// Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
+// Desired call to getrawaxis requires specific controller target. 
 
 public void teleopPeriodic() {
-double speed = CONTROLLER_DRIVE_CHANNEL_L.getrawAxis(1) * 0.6;
+double speed = this.pilot_joy.getrawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 0.6;
 double speed2 = CONTROLLER_DRIVE_CHANNEL_R.getrawAxis(5) * 0.6;
 
 double left = speed
