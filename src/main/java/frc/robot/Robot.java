@@ -71,14 +71,20 @@ public class Robot extends TimedRobot {
         break;
     }
   }
-
+  private OperatorInterface Ops;
+  private DriveSystems driveSystem;
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
-
+  public void teleopInit() {
+    driveSystem = new DriveSystems();
+    Ops = new OperatorInterface();
+  }
+ 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
