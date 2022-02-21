@@ -9,7 +9,8 @@ public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
 
-   private static ButtonType B2 = new Button(RobotConstants.COPILOT_B)
+   private static ButtonType B2 = new Button(RobotConstants.COPILOT_B)}
+   
    
    
    // Needs clean up
