@@ -1,12 +1,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.ButtonType;
+import edu.wpi.first.wpilibj2.command.button.Button;
+
 
 public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
 
-   
+   private static ButtonType B2 = new Button(RobotConstants.COPILOT_B)
    
    
    // Needs clean up
