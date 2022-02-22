@@ -1,5 +1,5 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.Pnematics;
+
 
 public class RobotConstants {
 
@@ -10,8 +10,8 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BRD = 3;
  
     /**Specific for logitech controller */
-    public static final boolean MOTOR_INVERT_L = false;
-    public static final boolean MOTOR_INVERT_R = true; 
+    public static final boolean MOTOR_INVERT_L = true;
+    public static final boolean MOTOR_INVERT_R = false; 
 
     //Controller System - Controller Ints
     /** This is for the tank drive system we hope to use 
