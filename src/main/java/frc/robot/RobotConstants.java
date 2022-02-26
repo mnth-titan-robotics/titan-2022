@@ -9,7 +9,7 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BRD = 3;
 
     //This is where the constants of the Firing System will be./
-    public static final int MOTOR_SHOOTER = -1;
+    public static final int MOTOR_SHOOTER = 6;
 
  
     /**Specific for logitech controller */
