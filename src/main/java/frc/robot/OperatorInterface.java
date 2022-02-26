@@ -9,7 +9,7 @@ public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
 
-   private static ButtonType B2 = new Button(RobotConstants.COPILOT_B)}
+   
    
    // Needs clean up
    public OperatorInterface(){
@@ -28,8 +28,11 @@ public class OperatorInterface {
       
 
       public boolean climb(){
-        return this.copilot_joy.getRawButton(1);
+        return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
         
+      }
+      public boolean IntakeSys(){
+        return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt);
       }
     }
 // Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
