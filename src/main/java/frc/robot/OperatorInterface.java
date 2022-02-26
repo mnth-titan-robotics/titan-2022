@@ -31,8 +31,11 @@ public class OperatorInterface {
         return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
         
       }
-      public boolean IntakeSys(){
-        return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt);
+      public double IntakeSys(){
+        return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt)?
+          1:
+          this.copilot_joy.getRawButton(-1)?
+            -1:0;
       }
     }
 // Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
