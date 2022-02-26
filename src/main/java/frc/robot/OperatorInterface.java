@@ -21,7 +21,7 @@ public class OperatorInterface {
     public boolean climbExtendRetractPrimary (){
       return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
         }
-      }
+      
 
       public boolean climb(){
         return this.copilot_joy.getRawButton(1);

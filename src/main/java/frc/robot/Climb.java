@@ -1,16 +1,6 @@
 package frc.robot;
 
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Compressor;
-=======
-import pabeles.concurrency.ConcurrencyOps.Reset;
-//import edu.wpi.first.wpilibj.PneumaticHub;
-//import edu.wpi.first.wpilibj.PneumaticsModuleType;
-//import edu.wpi.first.wpilibj.Solenoid;
-//import edu.wpi.first.wpilibj.Joystick.ButtonType;
-//import edu.wpi.first.wpilibj2.command.button.Button;
-//import edu.wpi.first.wpilibj.Compressor;
->>>>>>> 680f536925e1b1d4417d1c4ede8fd9abbc7125ca
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
@@ -36,4 +26,5 @@ if (climb)
 }
 
    //Solenoid_3.set(DoubleSolenoid.Value.kReverse);
+}
 }
