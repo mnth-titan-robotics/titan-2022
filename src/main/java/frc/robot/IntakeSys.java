@@ -16,10 +16,10 @@ public class IntakeSys {
         this.Feeder_Belt.setInverted(RobotConstants.MOTOR_INVERT_R );
         this.Feeder_Arm.setInverted(RobotConstants.MOTOR_INVERT_L);
      }
-     public void update() {
-         double upward = this._upwardCommand;
-         double downWard = this._downwardCommand;
-          }
+     public void update(double FBelt, double FArm ) {
+         this.Feeder_Belt.set(FBelt * .5);
+         this.Feeder_Arm.set(FArm * .5);
+         }
 
     
     
