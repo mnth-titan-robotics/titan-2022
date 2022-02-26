@@ -1,5 +1,4 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.Pnematics;
 
 public class RobotConstants {
 
@@ -8,6 +7,10 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BLD = 1;
     public static final int MOTOR_CHANNEL_FRD = 2;
     public static final int MOTOR_CHANNEL_BRD = 3;
+
+    //This is where the constants of the Firing System will be./
+    public static final int MOTOR_SHOOTER = -1;
+
  
     /**Specific for logitech controller */
     public static final boolean MOTOR_INVERT_L = false;
