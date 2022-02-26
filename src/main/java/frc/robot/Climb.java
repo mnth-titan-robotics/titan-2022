@@ -4,22 +4,27 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-//import edu.wpi.first.wpilibj.Solenoid;
-import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
 
 public class Climb {
-    pcmCompressor.enableDigital();
-    pcmCompressor.disable();
-    //pneumatics constants
-    Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    DoubleSolenoid controlDoublePCM = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+    private DoubleSolenoid _Solenoid_1;
+    private DoubleSolenoid _Solenoid_2;
+    private DoubleSolenoid _Solenoid_3;
+    private DoubleSolenoid _Solenoid_4;
+    private boolean _climbExtendRetractPrimary;
 
-    if (controller.getAButtonPressed()){controlDoublePCM.toggle();
-    }
+public static Compressor comp = new Compressor(0, null);
+public static DoubleSolenoid Solenoid_1 = new DoubleSolenoid(null, 0, 1);
+public static DoubleSolenoid Solenoid_2 = new DoubleSolenoid(null, 2, 3);
+public static DoubleSolenoid Solenoid_3 = new DoubleSolenoid(null, 4, 5);
+public static DoubleSolenoid Solenoid_4 = new DoubleSolenoid(null, 6, 7);
+public void update(boolean climb){
 
+if (climb)
+    { 
+   
+   //Solenoid_3.set(DoubleSolenoid.Value.kForward);
 }
-//This represents code if we want data from Pnuematics 
-// https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
-// boolean enabled = pcmCompressor.enabled();
-// boolean pressureSwitch = pcmCompressor.getPressureSwitchValue();
-// double current = pcmCompressor.getCompressorCurrent()
+
+   //Solenoid_3.set(DoubleSolenoid.Value.kReverse);
+}
+}
