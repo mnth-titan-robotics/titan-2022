@@ -1,6 +1,4 @@
 package frc.robot;
-
-
 public class RobotConstants {
 
     //Drive System - RoboRio PMM
@@ -8,6 +6,10 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BLD = 1;
     public static final int MOTOR_CHANNEL_FRD = 2;
     public static final int MOTOR_CHANNEL_BRD = 3;
+
+    //This is where the constants of the Firing System will be./
+    public static final int MOTOR_SHOOTER = 6;
+
  
     /**Specific for logitech controller */
     public static final boolean MOTOR_INVERT_L = true;
@@ -36,6 +38,8 @@ public class RobotConstants {
     public static final int Solenoid_3_B = 6;
     public static final int Solenoid_4_A = 7;
     public static final int Solenoid_4_B = 8;
+
+    
 
     //Feeder - RoboRio PMM
     public static final int Feeder_Belt = 5;

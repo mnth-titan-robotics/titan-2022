@@ -9,10 +9,14 @@ public class OperatorInterface {
 
    
    // Needs clean up
+   
    public OperatorInterface(){
        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
     }  
+    public boolean ShootingMotor() {
+      return this.copilot_joy.getRawButton(RobotConstants.MOTOR_SHOOTER);
+    }
     public double leftDriveStick (){
       return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 0.4;
          }
