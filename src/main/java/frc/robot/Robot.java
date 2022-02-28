@@ -102,8 +102,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
-    climbsystem.update(Ops.armset1());
-    climbsystem.update(Ops.armset2());
+    climbsystem.update(Ops.armset1(), Ops.armset2());
   }
 
   /** This function is called once when the robot is disabled. */
