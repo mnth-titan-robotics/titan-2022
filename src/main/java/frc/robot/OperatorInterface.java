@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj2.command.button.Button;
 
 
+
 public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
@@ -40,11 +41,12 @@ public class OperatorInterface {
             DoubleSolenoid.Value.kReverse:
             DoubleSolenoid.Value.kOff);
       } 
-      public boolean IntakeSys(){
-        return this.pilot_joy(3)?
-        Feeder_Belt
-      }
+     public boolean IntakeSys(){
+       return this.pilot_joy.getRawButton(RobotConstants.Feeder_Belt);
+          }
       
       }
+    
+      
     
 // Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
