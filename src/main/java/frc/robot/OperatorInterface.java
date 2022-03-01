@@ -51,13 +51,13 @@ public class OperatorInterface {
           (this.copilot_joy.getRawButton(2)?
             DoubleSolenoid.Value.kReverse:
             DoubleSolenoid.Value.kOff);
-          }  
-      
+      }  
+        
     
       public boolean climb(){
         return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
+        
       }
-
       public double IntakeSys(){
         return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt)?
           1:
