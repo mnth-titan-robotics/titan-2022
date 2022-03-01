@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
   private OperatorInterface _Ops;
   private DriveSystems _driveSystem;
   private Climb _climb;
+  private IntakeSys _IntakeSys;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     this._driveSystem = new DriveSystems();
+    this._IntakeSys = new IntakeSys();
     this._Ops = new OperatorInterface();
     this._climb = new Climb();
   }
@@ -89,9 +91,11 @@ public class Robot extends TimedRobot {
   private DriveSystems driveSystem;
   private Climb climbsystem;
   
+  private Shooter shootSystem;
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    shootSystem = new Shooter();
     driveSystem = new DriveSystems();
     Ops = new OperatorInterface();
     climbsystem = new Climb();
@@ -101,6 +105,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    shootSystem.update(Ops.ShootingMotor());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
   }

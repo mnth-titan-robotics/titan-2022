@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 
-
 public class Climb {
 
 
@@ -16,11 +15,5 @@ public class Climb {
     private DoubleSolenoid Solenoid_4 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotConstants.Solenoid_4_A, RobotConstants.Solenoid_4_B);
     public void update(DoubleSolenoid.Value armset1, DoubleSolenoid.Value armset2){
 
-       { 
-        Solenoid_1.set(armset1);
-        Solenoid_3.set(armset1);
-        Solenoid_2.set(armset2);
-        Solenoid_4.set(armset2);
-       }
-    }  
- }
+    }
+}
