@@ -49,12 +49,12 @@ public class OperatorInterface {
             DoubleSolenoid.Value.kReverse:
             DoubleSolenoid.Value.kOff);
       }  
-      }
+        
     
       public boolean climb(){
         return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
         
-      }
+      }}}}}
       public double IntakeSys(){
         return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt)?
           1:
