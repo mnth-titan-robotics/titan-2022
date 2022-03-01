@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -25,17 +26,25 @@ public class OperatorInterface {
     public boolean climbExtendRetractPrimary (){
       return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
         }
+      public DoubleSolenoid.Value armset1(){
+        return this.copilot_joy.getRawButton(3)?
+          DoubleSolenoid.Value.kForward:
+          (this.copilot_joy.getRawButton(4)?
+            DoubleSolenoid.Value.kReverse:
+            DoubleSolenoid.Value.kOff);
+          }
+      public DoubleSolenoid.Value armset2(){
+        return this.copilot_joy.getRawButton(1)?
+          DoubleSolenoid.Value.kForward:
+          (this.copilot_joy.getRawButton(2)?
+            DoubleSolenoid.Value.kReverse:
+            DoubleSolenoid.Value.kOff);
+      } 
+      public boolean IntakeSys(){
+        return this.pilot_joy(3)?
+        Feeder_Belt
+      }
       
-
-      public boolean climb(){
-        return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
-        
       }
-      public double IntakeSys(){
-        return this.copilot_joy.getRawButton(RobotConstants.Feeder_Belt)?
-          1:
-          this.copilot_joy.getRawButton(-1)?
-            -1:0;
-      }
-    }
+    
 // Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
