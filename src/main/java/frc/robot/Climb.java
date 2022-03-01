@@ -15,15 +15,11 @@ public class Climb {
     private DoubleSolenoid Solenoid_2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotConstants.Solenoid_2_A, RobotConstants.Solenoid_2_B);
     private DoubleSolenoid Solenoid_3 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotConstants.Solenoid_3_A, RobotConstants.Solenoid_3_B);
     private DoubleSolenoid Solenoid_4 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotConstants.Solenoid_4_A, RobotConstants.Solenoid_4_B);
-    public void update(DoubleSolenoid.Value armset1){
+    public void update(DoubleSolenoid.Value armset1, DoubleSolenoid.Value armset2){
 
        { 
         Solenoid_1.set(armset1);
         Solenoid_3.set(armset1);
-       
-    public void update(DoubleSolenoid.Value armset2); 
-
-    
         Solenoid_2.set(armset2);
         Solenoid_4.set(armset2);
        }
