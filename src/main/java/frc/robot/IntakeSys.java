@@ -3,8 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
 
 public class IntakeSys {
-    private double _upwardCommand;
-    private double _downwardCommand;
+
 
     private Victor Feeder_Belt;
     private Victor Feeder_Arm; 
