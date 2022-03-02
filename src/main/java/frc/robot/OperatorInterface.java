@@ -35,7 +35,9 @@ public class OperatorInterface {
     }
     
       
-
+    
+   
+  
 
   
     public DoubleSolenoid.Value armset1(){
@@ -52,6 +54,8 @@ public class OperatorInterface {
             DoubleSolenoid.Value.kReverse:
             DoubleSolenoid.Value.kOff);
       }  
+
+    
         
     
       public boolean climb(){
