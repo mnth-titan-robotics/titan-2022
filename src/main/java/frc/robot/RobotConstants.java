@@ -7,8 +7,12 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_FRD = 2;
     public static final int MOTOR_CHANNEL_BRD = 3;
 
-    //This is where the constants of the Firing System will be./
+    //Shooting System
     public static final int MOTOR_SHOOTER = 6;
+
+    //Arm Motor for climb
+    public static final int MOTOR_CLIMB_FRONT = 7;
+    public static final int MOTOR_CLIMB_BACK = 8;
 
  
     /**Specific for logitech controller */
@@ -39,11 +43,20 @@ public class RobotConstants {
     public static final int Solenoid_4_A = 7;
     public static final int Solenoid_4_B = 8;
 
-    
+    //Armset motors
 
     //Feeder - RoboRio PMM
     public static final int Feeder_Belt = 5;
     public static final int Feeder_Arm = 6;
+
+    //Feeder Button Mapping 
+    public static final int Intakey_PRIMARY = 1;
+     
+
+         
+     
+        
+    
 
 
 

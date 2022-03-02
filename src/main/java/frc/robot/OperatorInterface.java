@@ -35,9 +35,7 @@ public class OperatorInterface {
     }
     
       
-    
-   
-  
+
 
   
     public DoubleSolenoid.Value armset1(){
@@ -54,12 +52,16 @@ public class OperatorInterface {
             DoubleSolenoid.Value.kReverse:
             DoubleSolenoid.Value.kOff);
       }  
-
-    
+      
+      }
         
     
       public boolean climb(){
         return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
+        
+      }
+      public boolean IntakeyVaccum(){
+        return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY);
         
       }
       public double IntakeSys(){
