@@ -60,4 +60,7 @@ public class RobotConstants {
 
     //Deadband 
     public static final double DEADBAND = 0.05;
+    
+    // intakey primary
+    public static final int Intakey_PRIMARY = 1;
 }
