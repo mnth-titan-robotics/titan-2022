@@ -50,7 +50,9 @@ public class RobotConstants {
     public static final int Feeder_Arm = 6;
 
     //Feeder Button Mapping 
+    public static final int Intakey_PRIMARY = 1;
      
+
          
      
         
@@ -60,7 +62,6 @@ public class RobotConstants {
 
     //Deadband 
     public static final double DEADBAND = 0.05;
-    
-    // intakey primary
-    public static final int Intakey_PRIMARY = 1;
+
+
 }
