@@ -7,11 +7,8 @@ public class Shooter {
     public Shooter() {
         this.Shooter = new Victor(RobotConstants.MOTOR_SHOOTER);
     }
-    public void update(boolean ShootingMotor){
-        if (ShootingMotor){
-            this.Shooter.set(1);
-        }else{
-            this.Shooter.set(0);
-        }
+    public void update(Double ShootingMotor){
+    Shooter.set(ShootingMotor);
+            
     }
 }
