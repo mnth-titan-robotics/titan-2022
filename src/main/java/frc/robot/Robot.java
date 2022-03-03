@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   private Climb _climb;
   private IntakeSys _IntakeSys;
   private ClimbRotate _ClimbRotate;
+  private Timer m_tTimer = new Timer();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -68,9 +69,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+    driveSystem.update (1, 1);
+    m_tTimer.reset();
+    m_tTimer.start();
     
     //at the beginning of Autonomous, we want to reset things like the climber, operator interface, speed to zero, etc...
     //this._climb.reset();
@@ -79,6 +80,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+   
+    if (m_tTimer.get() < 5.0)
+    { driveSystem.update (1, 1);}
+    else {driveSystem.update(0, 0);}
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -132,4 +137,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {}
+
+  public v
 }
