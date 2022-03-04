@@ -72,6 +72,7 @@ public class Robot extends TimedRobot {
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
     
+    
     //at the beginning of Autonomous, we want to reset things like the climber, operator interface, speed to zero, etc...
     //this._climb.reset();
   }
