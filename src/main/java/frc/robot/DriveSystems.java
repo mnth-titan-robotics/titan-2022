@@ -1,9 +1,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
-import pabeles.concurrency.ConcurrencyOps.Reset;
 public class DriveSystems {
-    private double lefttrn;
-    private double righttrn;
+
     private Victor Motor_FLD;
     private Victor Motor_BLD;
     private Victor Motor_FRD;

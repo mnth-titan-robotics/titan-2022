@@ -5,10 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import java.util.concurrent.TimeUnit;
+
 
 
 /**
@@ -26,6 +26,8 @@ public class Robot extends TimedRobot {
   private OperatorInterface _Ops;
   private DriveSystems _driveSystem;
   private Climb _climb;
+  private IntakeSys _IntakeSys;
+  private ClimbRotate _ClimbRotate;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -38,8 +40,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     this._driveSystem = new DriveSystems();
+    this._IntakeSys = new IntakeSys();
     this._Ops = new OperatorInterface();
     this._climb = new Climb();
+    this._ClimbRotate = new ClimbRotate();
   }
 
   /**
@@ -87,12 +91,10 @@ public class Robot extends TimedRobot {
   }
   private OperatorInterface Ops;
   private DriveSystems driveSystem;
-<<<<<<< HEAD
   private Climb climbsystem;
+  private IntakeSys intakeSys;
   
-=======
   private Shooter shootSystem;
->>>>>>> bf1dbc8dc67969baae8adf160d32ae30aad19bc7
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
@@ -100,6 +102,8 @@ public class Robot extends TimedRobot {
     driveSystem = new DriveSystems();
     Ops = new OperatorInterface();
     climbsystem = new Climb();
+    _ClimbRotate = new ClimbRotate();
+    intakeSys = new IntakeSys();
    
   }
  
@@ -109,6 +113,8 @@ public class Robot extends TimedRobot {
     shootSystem.update(Ops.ShootingMotor());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
+    _ClimbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
+    intakeSys.update(Ops.FBelt(), Ops.FArm());
   }
 
   /** This function is called once when the robot is disabled. */
