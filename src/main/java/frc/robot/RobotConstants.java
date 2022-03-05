@@ -8,12 +8,15 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BRD = 3;
 
     //Shooting System
-    public static final int MOTOR_SHOOTER = 8;
+    //public static final int MOTOR_SHOOTER = 4;
 
     //Arm Motor for climb
     public static final int MOTOR_CLIMB_FRONT = 6;
     public static final int MOTOR_CLIMB_BACK = 7;
 
+        //Armset motors
+    public static final int ARMSET1_MOTOR = 8;
+    public static final int ARMSET2_MOTOR = 9;
  
     /**Specific for logitech controller */
     public static final boolean MOTOR_INVERT_L = true;
@@ -43,9 +46,6 @@ public class RobotConstants {
     public static final int Solenoid_4_A = 6;
     public static final int Solenoid_4_B = 7;
 
-    //Armset motors
-    public static final int ARMSET1_MOTOR = 1;
-    public static final int ARMSET2_MOTOR = 5;
 
     //Feeder - RoboRio PMM
     public static final int Feeder_Belt = 4;
@@ -64,4 +64,5 @@ public class RobotConstants {
 
     //Deadband 
     public static final double DEADBAND = 0.05;
+
 }

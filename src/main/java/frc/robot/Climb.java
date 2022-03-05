@@ -21,7 +21,7 @@ public class Climb {
              Solenoid_3.set(armset2);
              Solenoid_4.set(armset2);
             }
-         }  
-      
+        }
     }
+    
 
