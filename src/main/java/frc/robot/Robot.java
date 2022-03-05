@@ -41,14 +41,15 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
+    
     this.driveSystem = new DriveSystems();
     this.Ops = new OperatorInterface();
     //this._climbRotate = new ClimbRotate();
     this.shootSystem = new Shooter();
     this.Ops = new OperatorInterface();
-    this.intakeSys = new IntakeSys();
+   // this.intakeSys = new IntakeSys();
     this.climbsystem = new Climb();
+    climbsystem.reset(Ops.armset1(), Ops.armset2());
     
   }
 
@@ -119,6 +120,7 @@ public class Robot extends TimedRobot {
     //shootSystem.update(Ops.ShootingMotor());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
+  
     //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
     //intakeSys.update(Ops.FBelt(), Ops.FArm());
   }

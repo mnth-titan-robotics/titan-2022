@@ -53,7 +53,8 @@ public class RobotConstants {
 
     //Feeder Button Mapping 
     public static final int Intakey_PRIMARY = 1;
-     
+    
+    public static final int Intakey_SECONDARY = 2;
 
          
      

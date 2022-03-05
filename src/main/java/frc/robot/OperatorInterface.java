@@ -27,11 +27,11 @@ public double ARMSET1_MOTOR_JOY(){
 }
 
 public double leftDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 0.4;
+  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 1;
 }
 
 public double rightDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 0.4;
+  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 1;
 }
 
 public boolean climbExtendRetractPrimary (){
@@ -47,14 +47,19 @@ public DoubleSolenoid.Value armset1(){
       DoubleSolenoid.Value.kForward:
       (this.copilot_joy.getRawButton(4)?
         DoubleSolenoid.Value.kReverse:
-        DoubleSolenoid.Value.kOff);
+        DoubleSolenoid.Value.kReverse
+        );
       }
   public DoubleSolenoid.Value armset2(){
     return this.copilot_joy.getRawButton(1)?
       DoubleSolenoid.Value.kForward:
       (this.copilot_joy.getRawButton(2)?
         DoubleSolenoid.Value.kReverse:
-        DoubleSolenoid.Value.kOff);
+        DoubleSolenoid.Value.kReverse
+
+      
+        
+        );
   }  
   
   
@@ -69,7 +74,9 @@ public DoubleSolenoid.Value armset1(){
     
   }
  
-
+ public double FArm(){
+   return this.pilot_joy.getRawAxis(3)-this.pilot_joy.getRawAxis(2);
+ }
     
   //public boolean IntakeSys(){
     //return this.pilot_joy.getRawButton(RobotConstants.Feeder_Belt);

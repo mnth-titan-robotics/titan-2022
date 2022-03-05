@@ -13,8 +13,8 @@ public class IntakeSys {
         this.Feeder_Arm = new Victor(RobotConstants.Feeder_Arm);
 
      }
-     public void update(double FBelt, double FArm ) {
-         this.Feeder_Belt.set(FBelt * .5);
+     public void update(double IntakeyVacuum, double FArm ) {
+         this.Feeder_Belt.set(IntakeyVacuum * .5);
          this.Feeder_Arm.set(FArm * .5);
          }
 

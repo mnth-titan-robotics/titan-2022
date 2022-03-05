@@ -3,6 +3,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 public class Climb {
@@ -18,10 +19,19 @@ public class Climb {
             { 
              Solenoid_1.set(armset1);
              Solenoid_2.set(armset1);
-             Solenoid_3.set(armset2);
-             Solenoid_4.set(armset2);
+             Solenoid_3.set(Value.kForward);
+             Solenoid_4.set(Value.kForward);
             }
         }
-    }
+
+        public void reset(DoubleSolenoid.Value armset1, DoubleSolenoid.Value armset2){
+
+            { 
+             Solenoid_1.set(armset1);
+             Solenoid_2.set(armset1);
+             Solenoid_3.set(Value.kForward);
+             Solenoid_4.set(Value.kForward);
+            }
+        }}
     
 
