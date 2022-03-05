@@ -5,10 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,14 +23,13 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private OperatorInterface _Ops;
-  private DriveSystems _driveSystem;
-  private IntakeSys _IntakeSys;
-//private ClimbRotate _climbRotate;
   private OperatorInterface Ops;
   private DriveSystems driveSystem;
-  private Climb climbsystem;
   private IntakeSys intakeSys;
+//private ClimbRotate _climbRotate;
+
+  private Climb climbsystem;
+
   private Shooter shootSystem;
 
   /**
@@ -75,13 +74,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    this.driveSystem.update(0.2, 0.2);
+    try {
+      TimeUnit.MILLISECONDS.sleep(4000); 
+      } catch (Exception e) {
+        System.err.println("An InterruptedException was caught");
+      }   
+      this.driveSystem.update(0, 0);
+
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-    
+    System.out.println("Auto selected: " + m_autoSelected);}
+  
     //at the beginning of Autonomous, we want to reset things like the climber, operator interface, speed to zero, etc...
     //this._climb.reset();
-  }
+
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -102,18 +109,18 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    shootSystem.update(Ops.ShootingMotor());
-    driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
-    climbsystem.update(Ops.armset1(), Ops.armset2());
-    //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
-    intakeSys.update(Ops.FBelt(), Ops.FArm());
+
    
   }
  
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-
+    //shootSystem.update(Ops.ShootingMotor());
+    driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
+    climbsystem.update(Ops.armset1(), Ops.armset2());
+    //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
+    //intakeSys.update(Ops.FBelt(), Ops.FArm());
   }
 
   /** This function is called once when the robot is disabled. */
