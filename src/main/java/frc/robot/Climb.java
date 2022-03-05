@@ -17,8 +17,8 @@ public class Climb {
 
             { 
              Solenoid_1.set(armset1);
-             Solenoid_3.set(armset1);
-             Solenoid_2.set(armset2);
+             Solenoid_2.set(armset1);
+             Solenoid_3.set(armset2);
              Solenoid_4.set(armset2);
             }
          }  
