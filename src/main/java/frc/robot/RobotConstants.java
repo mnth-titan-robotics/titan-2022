@@ -8,26 +8,22 @@ public class RobotConstants {
     public static final int MOTOR_CHANNEL_BRD = 3;
 
     //Shooting System
-    //public static final int MOTOR_SHOOTER = 4;
-
-    //Arm Motor for climb
-    public static final int MOTOR_CLIMB_FRONT = 6;
-    public static final int MOTOR_CLIMB_BACK = 7;
+    public static final int MOTOR_SHOOTER = 6;
 
         //Armset motors
     public static final int ARMSET1_MOTOR = 8;
     public static final int ARMSET2_MOTOR = 9;
  
     /**Specific for logitech controller */
-    public static final boolean MOTOR_INVERT_L = true;
-    public static final boolean MOTOR_INVERT_R = false; 
+    public static final boolean MOTOR_INVERT_L = false;
+    public static final boolean MOTOR_INVERT_R = true; 
 
     //Controller System - Controller Ints
     /** This is for the tank drive system we hope to use 
      * if changed then we will have to use the x axis on one or both of the joysticks
      */
-    public static final int CONTROLLER_DRIVE_CHANNEL_L = 1;
-    public static final int CONTROLLER_DRIVE_CHANNEL_R = 5;
+    public static final int CONTROLLER_DRIVE_CHANNEL_L = 5;
+    public static final int CONTROLLER_DRIVE_CHANNEL_R = 1;
 
     //This is for the Climb button mapping
     public static final int CLIMB_EXTEND_RETRACT_PRIMARY = 1;
