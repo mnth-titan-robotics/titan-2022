@@ -45,9 +45,9 @@ public class Robot extends TimedRobot {
     this.driveSystem = new DriveSystems();
     this.Ops = new OperatorInterface();
     //this._climbRotate = new ClimbRotate();
-    this.shootSystem = new Shooter();
+    //this.shootSystem = new Shooter();
     this.Ops = new OperatorInterface();
-   // this.intakeSys = new IntakeSys();
+    this.intakeSys = new IntakeSys();
     this.climbsystem = new Climb();
     climbsystem.reset(Ops.armset1(), Ops.armset2());
     
@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
     climbsystem.update(Ops.armset1(), Ops.armset2());
   
     //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
-    //intakeSys.update(Ops.FBelt(), Ops.FArm());
+    intakeSys.update(Ops.IntakeyVaccum(), Ops.FArm());
   }
 
   /** This function is called once when the robot is disabled. */

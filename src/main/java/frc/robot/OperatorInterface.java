@@ -69,8 +69,12 @@ public DoubleSolenoid.Value armset1(){
     return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
     
   }
-  public boolean IntakeyVaccum(){
-    return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY);
+  public double IntakeyVaccum(){
+    return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY)?
+    1:
+    this.pilot_joy.getRawButton(2)?
+    -1:
+    0;
     
   }
  
