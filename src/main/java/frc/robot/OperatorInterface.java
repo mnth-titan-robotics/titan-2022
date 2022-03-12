@@ -34,14 +34,10 @@ public double rightDriveStick (){
   return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 1;
 }
 
-public boolean climbExtendRetractPrimary (){
-  return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
-}
-
   
 
 
-
+//Climb Primary
 public DoubleSolenoid.Value armset1(){
     return this.copilot_joy.getRawButton(3)?
       DoubleSolenoid.Value.kForward:
@@ -65,10 +61,6 @@ public DoubleSolenoid.Value armset1(){
   
     
 
-  public boolean climb(){
-    return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
-    
-  }
   public double IntakeyVaccum(){
     return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY)?
     1:
