@@ -2,6 +2,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.ButtonType;
+import edu.wpi.first.wpilibj2.command.button.Button;
+
+
 
 
 
@@ -11,8 +15,10 @@ public class OperatorInterface {
     private Joystick copilot_joy;    
 
    
+   
    // Needs clean up
-   public OperatorInterface(){
+   
+    public OperatorInterface(){
        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
     }  

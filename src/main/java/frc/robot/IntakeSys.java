@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.motorcontrol.Victor;
 
 public class IntakeSys {
 
-
     private Victor Feeder_Belt;
     private Victor Feeder_Arm; 
     
