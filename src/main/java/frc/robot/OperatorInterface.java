@@ -1,5 +1,7 @@
 package frc.robot;
 
+
+import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -11,18 +13,25 @@ private Joystick pilot_joy;
 private Joystick copilot_joy;    
 
 
+public Debouncer[] debouncers;
+
+
 
 // Needs clean up
 
 public OperatorInterface(){
     this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
     this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
+    debouncers = new Debouncer[16];
+    for (int i = 0; i < debouncers.length; i= i + 1){
+      debouncers[i] = new Debouncer(RobotConstants.WINDOW_TIME);
+    }
 }
 
 public double ShootingMotor(){
-  return this.copilot_joy.getRawButton(6)?
+  return debouncers[6].calculate(this.copilot_joy.getRawButton(6))?
     1:
-    this.copilot_joy.getRawButton(5)?
+    debouncers[5].calculate(this.copilot_joy.getRawButton(5))?
       0.5:0;
 }
 public double FArm(){
@@ -30,9 +39,9 @@ public double FArm(){
 } 
 
 public double FBelt(){
-  return this.pilot_joy.getRawButton(1)?
+  return debouncers[RobotConstants.FBELT_BUTTON].calculate(this.pilot_joy.getRawButton(RobotConstants.FBELT_BUTTON))?
   1:
-  this.pilot_joy.getRawButton(2)?
+  debouncers[2].calculate(this.pilot_joy.getRawButton(2))?
   -1:0;
 }
 
@@ -45,32 +54,29 @@ public double ARMSET1_MOTOR_JOY(){
 }
 
 public double leftDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 0.4;
+  //add something in robot constants for ThresholdMin and ThresholdMax
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 0.4;
 }
 
 public double rightDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 0.4;
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 0.4;
 }
 
-public boolean climbExtendRetractPrimary (){
-  return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
-}
 
-  
 
 
 
 public DoubleSolenoid.Value armset1(){
-    return this.copilot_joy.getRawButton(3)?
+    return debouncers[3].calculate(this.copilot_joy.getRawButton(3))?
       DoubleSolenoid.Value.kForward:
-      (this.copilot_joy.getRawButton(4)?
+      (debouncers[4].calculate(this.copilot_joy.getRawButton(4))?
         DoubleSolenoid.Value.kReverse:
         DoubleSolenoid.Value.kOff);
       }
   public DoubleSolenoid.Value armset2(){
-    return this.copilot_joy.getRawButton(1)?
+    return debouncers[1].calculate(this.copilot_joy.getRawButton(1))?
       DoubleSolenoid.Value.kForward:
-      (this.copilot_joy.getRawButton(2)?
+      (debouncers[2].calculate(this.copilot_joy.getRawButton(2))?
         DoubleSolenoid.Value.kReverse:
         DoubleSolenoid.Value.kOff);
   }  
@@ -78,12 +84,12 @@ public DoubleSolenoid.Value armset1(){
   
     
 
-  public boolean climb(){
-    return this.copilot_joy.getRawButton(RobotConstants.CLIMB_EXTEND_RETRACT_PRIMARY);
+
     
-  }
+  
   public boolean IntakeyVaccum(){
-    return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY);
+    return debouncers[RobotConstants.Intakey_PRIMARY]
+            .calculate(this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY));
     
   }
  
