@@ -5,10 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -23,11 +23,14 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private OperatorInterface _Ops;
-  private DriveSystems _driveSystem;
-  private Climb _climb;
-  private IntakeSys _IntakeSys;
-  private ClimbRotate _ClimbRotate;
+  private OperatorInterface Ops;
+  private DriveSystems driveSystem;
+  private IntakeSys intakeSys;
+//private ClimbRotate _climbRotate;
+
+  private Climb climbsystem;
+
+  private Shooter shootSystem;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -38,12 +41,16 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
-    this._driveSystem = new DriveSystems();
-    this._IntakeSys = new IntakeSys();
-    this._Ops = new OperatorInterface();
-    this._climb = new Climb();
-    this._ClimbRotate = new ClimbRotate();
+    
+    this.driveSystem = new DriveSystems();
+    this.Ops = new OperatorInterface();
+    //this._climbRotate = new ClimbRotate();
+      this.shootSystem = new Shooter();
+    this.Ops = new OperatorInterface();
+    this.intakeSys = new IntakeSys();
+    this.climbsystem = new Climb();
+    climbsystem.reset(Ops.armset1(), Ops.armset2());
+    
   }
 
   /**
@@ -68,13 +75,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    this.driveSystem.update(0.2, 0.2);
+    try {
+      TimeUnit.MILLISECONDS.sleep(4000); 
+      } catch (Exception e) {
+        System.err.println("An InterruptedException was caught");
+      }   
+      this.driveSystem.update(0, 0);
+
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-    
+    System.out.println("Auto selected: " + m_autoSelected);}
+  
     //at the beginning of Autonomous, we want to reset things like the climber, operator interface, speed to zero, etc...
     //this._climb.reset();
-  }
+
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -89,21 +104,13 @@ public class Robot extends TimedRobot {
         break;
     }
   }
-  private OperatorInterface Ops;
-  private DriveSystems driveSystem;
-  private Climb climbsystem;
-  private IntakeSys intakeSys;
+
   
-  private Shooter shootSystem;
+
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    shootSystem = new Shooter();
-    driveSystem = new DriveSystems();
-    Ops = new OperatorInterface();
-    climbsystem = new Climb();
-    _ClimbRotate = new ClimbRotate();
-    intakeSys = new IntakeSys();
+
    
   }
  
@@ -113,8 +120,9 @@ public class Robot extends TimedRobot {
     shootSystem.update(Ops.ShootingMotor());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
-    _ClimbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
-    intakeSys.update(Ops.FBelt(), Ops.FArm());
+  
+    //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
+    intakeSys.update(Ops.IntakeyVaccum(), Ops.FArm());
   }
 
   /** This function is called once when the robot is disabled. */
@@ -131,5 +139,5 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during test mode. */
   @Override
-  public void testPeriodic() {}
+  public void testPeriodic() {}  
 }

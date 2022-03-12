@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 
 
 public class OperatorInterface {
-private Joystick pilot_joy;
-private Joystick copilot_joy;    
+    private Joystick pilot_joy;
+    private Joystick copilot_joy;    
 
 
 public Debouncer[] debouncers;
@@ -34,9 +34,12 @@ public double ShootingMotor(){
     debouncers[5].calculate(this.copilot_joy.getRawButton(5))?
       0.5:0;
 }
+
+
 public double FArm(){
-  return this.pilot_joy.getRawAxis(3)-this.copilot_joy.getRawAxis(2);
-} 
+  return this.pilot_joy.getRawAxis(3)-this.pilot_joy.getRawAxis(2);
+}
+   
 
 public double FBelt(){
   return debouncers[RobotConstants.FBELT_BUTTON].calculate(this.pilot_joy.getRawButton(RobotConstants.FBELT_BUTTON))?
@@ -55,49 +58,51 @@ public double ARMSET1_MOTOR_JOY(){
 
 public double leftDriveStick (){
   //add something in robot constants for ThresholdMin and ThresholdMax
-  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 0.4;
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 1;
 }
 
 public double rightDriveStick (){
-  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 0.4;
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 1;
 }
 
 
 
 
-
+//Climb Primary
 public DoubleSolenoid.Value armset1(){
     return debouncers[3].calculate(this.copilot_joy.getRawButton(3))?
       DoubleSolenoid.Value.kForward:
       (debouncers[4].calculate(this.copilot_joy.getRawButton(4))?
         DoubleSolenoid.Value.kReverse:
-        DoubleSolenoid.Value.kOff);
+        DoubleSolenoid.Value.kReverse
+        );
       }
   public DoubleSolenoid.Value armset2(){
     return debouncers[1].calculate(this.copilot_joy.getRawButton(1))?
       DoubleSolenoid.Value.kForward:
       (debouncers[2].calculate(this.copilot_joy.getRawButton(2))?
         DoubleSolenoid.Value.kReverse:
-        DoubleSolenoid.Value.kOff);
+        DoubleSolenoid.Value.kReverse
+
+      
+        
+        );
   }  
   
   
     
 
-
-    
-  
-  public boolean IntakeyVaccum(){
+  public double IntakeyVaccum(){
     return debouncers[RobotConstants.Intakey_PRIMARY]
-            .calculate(this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY));
+            .calculate(this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY))?
+    1:
+    this.pilot_joy.getRawButton(2)?
+    -1:
+    0;
     
   }
  
 
-    
-  //public boolean IntakeSys(){
-    //return this.pilot_joy.getRawButton(RobotConstants.Feeder_Belt);
-  //}
   
 }    
 
