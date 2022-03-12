@@ -82,9 +82,13 @@ public DoubleSolenoid.Value armset1(){
    return this.pilot_joy.getRawAxis(3)-this.pilot_joy.getRawAxis(2);
  }
     
-  //public boolean IntakeSys(){
-    //return this.pilot_joy.getRawButton(RobotConstants.Feeder_Belt);
-  //}
+public double ShootingMotor(){
+  return this.copilot_joy.getRawButton(6)?
+  1:
+  this.copilot_joy.getRawButton(5)?
+  0.5:
+  0;
+}
   
 }    
 

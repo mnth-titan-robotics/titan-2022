@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
     this.driveSystem = new DriveSystems();
     this.Ops = new OperatorInterface();
     //this._climbRotate = new ClimbRotate();
-    //this.shootSystem = new Shooter();
+      this.shootSystem = new Shooter();
     this.Ops = new OperatorInterface();
     this.intakeSys = new IntakeSys();
     this.climbsystem = new Climb();
@@ -117,7 +117,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    //shootSystem.update(Ops.ShootingMotor());
+    shootSystem.update(Ops.ShootingMotor());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
   
