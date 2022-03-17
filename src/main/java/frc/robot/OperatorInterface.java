@@ -2,8 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.ButtonType;
-import edu.wpi.first.wpilibj2.command.button.Button;
+
+import edu.wpi.first.math.filter.Debouncer;
 
 
 
@@ -14,13 +14,17 @@ public class OperatorInterface {
     private Joystick pilot_joy;
     private Joystick copilot_joy;    
 
-   
+    public Debouncer[] debouncers;
    
    // Needs clean up
    
     public OperatorInterface(){
        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
+       debouncers = new Debouncer[16];
+       for (int i = 0; i < debouncers.length; i = i + 1){
+         debouncers[i] = new Debouncer(RobotConstants.WINDOW_TIME);
+       }
     }  
       
 
@@ -33,11 +37,11 @@ public double ARMSET1_MOTOR_JOY(){
 }
 
 public double leftDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 1;
+  return frc.robot.Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 0.4;
 }
 
 public double rightDriveStick (){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 1;
+  return frc.robot.Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 0.4;
 }
 
   
@@ -45,17 +49,17 @@ public double rightDriveStick (){
 
 //Climb Primary
 public DoubleSolenoid.Value armset1(){
-    return this.copilot_joy.getRawButton(3)?
+    return debouncers[3].calculate(this.copilot_joy.getRawButton(3))?
       DoubleSolenoid.Value.kForward:
-      (this.copilot_joy.getRawButton(4)?
+      (debouncers[4].calculate(this.copilot_joy.getRawButton(4))?
         DoubleSolenoid.Value.kReverse:
         DoubleSolenoid.Value.kReverse
         );
       }
   public DoubleSolenoid.Value armset2(){
-    return this.copilot_joy.getRawButton(1)?
+    return debouncers[1].calculate(this.copilot_joy.getRawButton(1))?
       DoubleSolenoid.Value.kForward:
-      (this.copilot_joy.getRawButton(2)?
+      (debouncers[2].calculate(this.copilot_joy.getRawButton(2))?
         DoubleSolenoid.Value.kReverse:
         DoubleSolenoid.Value.kReverse
 
@@ -68,9 +72,10 @@ public DoubleSolenoid.Value armset1(){
     
 
   public double IntakeyVaccum(){
-    return this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY)?
+    return debouncers[RobotConstants.Intakey_PRIMARY]
+            .calculate(this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY))?
     1:
-    this.pilot_joy.getRawButton(2)?
+    debouncers[2].calculate(this.pilot_joy.getRawButton(2))?
     -1:
     0;
     
@@ -81,9 +86,9 @@ public DoubleSolenoid.Value armset1(){
  }
     
 public double ShootingMotor(){
-  return this.copilot_joy.getRawButton(6)?
+  return debouncers[6].calculate(this.copilot_joy.getRawButton(6))?
   1:
-  this.copilot_joy.getRawButton(5)?
+  debouncers[5].calculate(this.copilot_joy.getRawButton(5))?
   0.5:
   0;
 }

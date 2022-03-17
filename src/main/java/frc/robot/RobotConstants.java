@@ -1,6 +1,7 @@
 package frc.robot;
 public class RobotConstants {
-
+    //Debouncer
+    public static final double WINDOW_TIME = 0.1;
     //Drive System - RoboRio PMM
     public static final int MOTOR_CHANNEL_FLD = 0;
     public static final int MOTOR_CHANNEL_BLD = 1;
@@ -9,6 +10,9 @@ public class RobotConstants {
 
     //Shooting System
     public static final int MOTOR_SHOOTER = 6;
+
+    //Operator Joystick
+    public static final int FBELT_BUTTON = 1;
 
         //Armset motors
     public static final int ARMSET1_MOTOR = 8;
@@ -54,7 +58,9 @@ public class RobotConstants {
     
     public static final int Intakey_SECONDARY = 2;
 
-         
+    //Controller Deadzone
+    public static final double THRESHOLDMIN = -0.1;
+    public static final double THRESHOLDMAX = 0.1;
      
         
     
