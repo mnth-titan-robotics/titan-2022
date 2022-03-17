@@ -3,7 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 
+
 import edu.wpi.first.math.filter.Debouncer;
+
 
 
 
@@ -17,8 +19,7 @@ public class OperatorInterface {
     public Debouncer[] debouncers;
    
    // Needs clean up
-   
-    public OperatorInterface(){
+   public OperatorInterface(){
        this.pilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_PILOT);
        this.copilot_joy = new Joystick(RobotConstants.JOYSTICK_PORT_COPILOT);
        debouncers = new Debouncer[16];
@@ -28,20 +29,14 @@ public class OperatorInterface {
     }  
       
 
-public double ARMSET2_MOTOR_JOY(){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L) * 0.4;
-}
 
-public double ARMSET1_MOTOR_JOY(){
-  return this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R) * 0.4;
-}
 
 public double leftDriveStick (){
-  return frc.robot.Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 0.4;
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_L), -0.1, 0.1) * 0.4;
 }
 
 public double rightDriveStick (){
-  return frc.robot.Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 0.4;
+  return Helper.Deadzone(this.pilot_joy.getRawAxis(RobotConstants.CONTROLLER_DRIVE_CHANNEL_R), -0.1, 0.1) * 0.4;
 }
 
   
@@ -73,9 +68,9 @@ public DoubleSolenoid.Value armset1(){
 
   public double IntakeyVaccum(){
     return debouncers[RobotConstants.Intakey_PRIMARY]
-            .calculate(this.pilot_joy.getRawButton(RobotConstants.Intakey_PRIMARY))?
+            .calculate(this.pilot_joy.getRawButton(5))?
     1:
-    debouncers[2].calculate(this.pilot_joy.getRawButton(2))?
+    debouncers[2].calculate(this.pilot_joy.getRawButton(6))?
     -1:
     0;
     
@@ -94,5 +89,6 @@ public double ShootingMotor(){
 }
   
 }    
+
 
 // Use Joystick library here: https://first.wpi.edu/FRC/roborio/release2017/docs/java/edu/wpi/first/wpilibj/Joystick.html 
