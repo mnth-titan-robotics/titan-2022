@@ -10,11 +10,12 @@ public class IntakeSys {
     public IntakeSys() {
         this.Feeder_Belt = new Victor(RobotConstants.Feeder_Belt);
         this.Feeder_Arm = new Victor(RobotConstants.Feeder_Arm);
-
+             
      }
-     public void update(double IntakeyVacuum, double FArm) {
-         this.Feeder_Belt.set(IntakeyVacuum * 1);
-         this.Feeder_Arm.set(FArm * .2);
+     public void update(double IntakeyVacuum, double FArm, double FArmBack) {
+         this.Feeder_Belt.set(IntakeyVacuum * 0.8);
+         this.Feeder_Arm.set(FArm * -.8);
+         this.Feeder_Arm.set(FArmBack * .8);
          }
 
     

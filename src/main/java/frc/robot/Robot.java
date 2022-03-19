@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.concurrent.TimeUnit;
-
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -41,12 +41,11 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    
+    CameraServer.startAutomaticCapture();
     this.driveSystem = new DriveSystems();
     this.Ops = new OperatorInterface();
     //this._climbRotate = new ClimbRotate();
-      this.shootSystem = new Shooter();
-    this.Ops = new OperatorInterface();
+    this.shootSystem = new Shooter();
     this.intakeSys = new IntakeSys();
     this.climbsystem = new Climb();
     climbsystem.reset(Ops.armset1(), Ops.armset2());
@@ -75,13 +74,88 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    this.driveSystem.update(0.2, 0.2);
+   /* this.driveSystem.update(0.2, 0.2);
+    try {
+      TimeUnit.MILLISECONDS.sleep(4000); 
+      } catch (Exception e) {
+        System.err.println("An InterruptedException was caught");
+      }   
+      this.driveSystem.update(0, 0);**/
+
+    //New Auto Mode for Shooter
+   /* this.driveSystem.update(0.2, 0.2);
     try {
       TimeUnit.MILLISECONDS.sleep(4000); 
       } catch (Exception e) {
         System.err.println("An InterruptedException was caught");
       }   
       this.driveSystem.update(0, 0);
+
+      shootSystem.autoUpdate(-1);
+    try {
+      TimeUnit.MILLISECONDS.sleep(6000); 
+      } catch (Exception e) {
+        System.err.println("An InterruptedException was caught");
+      }   
+      shootSystem.autoUpdate(0);
+     **/
+    //set up shot
+    this.driveSystem.update(0.4, 0.4);
+    this.intakeSys.update(0, 0, .2);
+   
+    try {
+      TimeUnit.MILLISECONDS.sleep(3000); 
+      } catch (Exception e) {
+        System.err.println("An InterruptedException was caught");
+      }   
+      //ball into cargo
+      //this.shootSystem.update(1);
+      this.driveSystem.update(0, 0);
+      this.intakeSys.update(0, 0, 0);
+      try {
+        TimeUnit.MILLISECONDS.sleep(3000); 
+        } catch (Exception e) {
+          System.err.println("An InterruptedException was caught");
+        }   
+        //settling the ball
+       //this.shootSystem.update(0);
+     /*   try {
+          TimeUnit.MILLISECONDS.sleep(1000); 
+          } catch (Exception e) {
+            System.err.println("An InterruptedException was caught");
+          }   **/
+          //reving shoot
+          this.shootSystem.update(-1);
+          try {
+            TimeUnit.MILLISECONDS.sleep(1000); 
+            } catch (Exception e) {
+              System.err.println("An InterruptedException was caught");
+            }   
+            //jerk forward
+          this.driveSystem.update(1, 1);
+          try {
+            TimeUnit.MILLISECONDS.sleep(500); 
+            } catch (Exception e) {
+              System.err.println("An InterruptedException was caught");
+            }   
+            //stop all
+            this.driveSystem.update(0, 0);
+            try {
+              TimeUnit.MILLISECONDS.sleep(1000); 
+              } catch (Exception e) {
+                System.err.println("An InterruptedException was caught");
+              }   
+              this.shootSystem.update(0);
+              this.driveSystem.update(.2, .2);
+              try {
+                TimeUnit.MILLISECONDS.sleep(1000); 
+                } catch (Exception e) {
+                  System.err.println("An InterruptedException was caught");
+                }   
+                this.driveSystem.update(0, 0);
+                this.shootSystem.update(0);
+                this.intakeSys.update(0, 0, 0);
+
 
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
@@ -117,12 +191,12 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    shootSystem.update(Ops.ShootingMotor());
+    shootSystem.update(Ops.Motor_Shooter());
     driveSystem.update(Ops.leftDriveStick (), Ops.rightDriveStick());
     climbsystem.update(Ops.armset1(), Ops.armset2());
-  
+ 
     //_climbRotate.update(Ops.ARMSET1_MOTOR_JOY(), Ops.ARMSET2_MOTOR_JOY());
-    intakeSys.update(Ops.IntakeyVaccum(), Ops.FArm());
+    intakeSys.update(Ops.IntakeyVaccum(), Ops.FArm(), Ops.FArmBack());
   }
 
   /** This function is called once when the robot is disabled. */
